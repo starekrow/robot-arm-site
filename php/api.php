@@ -43,7 +43,8 @@ class api
                 $names[] = $fn;
             }
         }
-        closedir($pd);
+	closedir($pd);
+	sort($names);
         return $names;
     }
 
