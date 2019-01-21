@@ -15,7 +15,7 @@ define(function(require, exports, module) {
         load: function (name, req, onLoad, config)
         {
             riot_tag.loaded[name] = true;
-            require(["text!tags/" + name + ".tag"], function(tagdef) {
+            require(["text!../tags/" + name + ".tag"], function(tagdef) {
                 // find any custom tags used in this tag, define them
                 var p = riot_tag.tagparser;
                 var loaders = [];
@@ -40,7 +40,11 @@ define(function(require, exports, module) {
                     try {
                         // define the tag
                         //console.log("Compile " + name);
+                        //console.log("-------------------------------------");
+                        //console.log(tagdef);
+                        //console.log("-------------------------------------");
                         var r = riot.compile(tagdef);
+                        //console.log("Done");
                     } catch (e) {
                         //console.log("Compile " + name + "failed");
                         //console.log(e);

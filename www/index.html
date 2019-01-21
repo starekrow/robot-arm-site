@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WebThings</title>
-        <script src="vendor/requirejs/require.js"></script>
+        <title>Robot Arm</title>
+        <script src="js/vendor/requirejs/require.js"></script>
         <style type='text/css'>
             html body {
                 margin: 0;
@@ -19,6 +19,7 @@
     <body>
         <script>
             require.config({
+                baseUrl: "/js",
                 paths: {
                     text: "vendor/requirejs/text",
                     riot: "vendor/riot",
@@ -26,7 +27,6 @@
                 shim: {
                 }
             });
-            _global = window;
             require(["main"], () => {});
         </script>
     </body>

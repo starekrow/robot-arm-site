@@ -1,2 +1,4 @@
 #!/bin/bash
-docker run -d -v $PWD/www/:/var/www/html/ -p 80:80 --name webtile webtiles
+docker stop robot-arm-page
+docker container rm robot-arm-page
+docker run -d -v $PWD/www/:/var/www/html/ -v $PWD/php/:/var/www/php/ -v $PWD/pics/:/var/www/pics/ -p 8001:80 --name robot-arm-page robot-arm

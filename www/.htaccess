@@ -1,0 +1,8 @@
+
+AddType text/plain tag
+
+# Alias /api ../php/api.php
+
+RewriteEngine On
+RewriteRule ^api/(.*)$ api.php/$1 [L]
+
