@@ -10,10 +10,10 @@ class api
     public $path = null;
     public $method = null;
 
-    protected const TMPDIR = "/tmp/starekrow-robot-arm";
-    protected const THUMB_DIR = "/tmp/starekrow-robot-arm/thumbs";
-    protected const IMAGE_DIR = "/tmp/starekrow-robot-arm/images";
-    protected const PICS_DIR = "../pics";
+    const TMPDIR = "/tmp/starekrow-robot-arm";
+    const THUMB_DIR = "/tmp/starekrow-robot-arm/thumbs";
+    const IMAGE_DIR = "/tmp/starekrow-robot-arm/images";
+    const PICS_DIR = "../pics";
 
     protected function typeForName($filename)
     {
@@ -140,7 +140,7 @@ class api
         return false;
     }
 
-    protected const SETTINGS_FILE = "/tmp/starekrow-robot-arm/settings";
+    const SETTINGS_FILE = "/tmp/starekrow-robot-arm/settings";
     protected $currentSettings;
 
     protected function settingValue($setting, $dfault)
