@@ -11,44 +11,9 @@ class api
     public $method = null;
 
     protected const TMPDIR = "/tmp/starekrow-robot-arm";
-    protected const SETTINGS_FILE = "/tmp/starekrow-robot-arm/settings";
     protected const THUMB_DIR = "/tmp/starekrow-robot-arm/thumbs";
     protected const IMAGE_DIR = "/tmp/starekrow-robot-arm/images";
     protected const PICS_DIR = "../pics";
-    protected $currentSettings;
-
-    protected function settingValue($setting, $dfault)
-    {
-        if (!$currentSettings) {
-            $data = @file_get_contents(self::SETTINGS_FILE);
-            if ($data) {
-                $data = @unserialize($data);
-            }
-            if ($data) {
-                $currentSettings = $data;
-            } else  {
-                $currentSettings = (object)[];
-            }
-        }
-        if (property_exists($this->currentSettings, $setting)) {
-            $s = $this->currentSettings->{$setting};
-            if ($s->expires === false || $s->expires > time()) {
-                return $s->value;
-            }
-        }
-        return $dfault;
-    }
-
-    protected function settingApply($setting, $value, $ttl = false)
-    {
-        $check = $this->settingValue($setting);
-        $expires = $ttl === false ? $ttl : $ttl + time();
-        $this->currentSettings->{$setting} = (object)[
-            "expires" => $expires,
-            "value"   => $value
-        ];
-        file_put_contents(self::SETTINGS_FILE, serialize($this->currentSettings));
-    }
 
     protected function typeForName($filename)
     {
@@ -173,6 +138,42 @@ class api
             return null;
         }
         return false;
+    }
+
+    protected const SETTINGS_FILE = "/tmp/starekrow-robot-arm/settings";
+    protected $currentSettings;
+
+    protected function settingValue($setting, $dfault)
+    {
+        if (!$currentSettings) {
+            $data = @file_get_contents(self::SETTINGS_FILE);
+            if ($data) {
+                $data = @unserialize($data);
+            }
+            if ($data) {
+                $currentSettings = $data;
+            } else  {
+                $currentSettings = (object)[];
+            }
+        }
+        if (property_exists($this->currentSettings, $setting)) {
+            $s = $this->currentSettings->{$setting};
+            if ($s->expires === false || $s->expires > time()) {
+                return $s->value;
+            }
+        }
+        return $dfault;
+    }
+
+    protected function settingApply($setting, $value, $ttl = false)
+    {
+        $check = $this->settingValue($setting);
+        $expires = $ttl === false ? $ttl : $ttl + time();
+        $this->currentSettings->{$setting} = (object)[
+            "expires" => $expires,
+            "value"   => $value
+        ];
+        file_put_contents(self::SETTINGS_FILE, serialize($this->currentSettings));
     }
 
     static function __route($path, $method, $query)

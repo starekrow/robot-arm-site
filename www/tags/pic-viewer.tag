@@ -1,5 +1,5 @@
 <pic-viewer>
-    <img src="/api/image/{parent.opts.view}">
+    <img src="api/image/{parent.opts.view}">
     <style>
         :scope {
             font-size: 20px;

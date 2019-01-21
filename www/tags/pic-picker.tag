@@ -19,13 +19,6 @@
         .thumbs {
             text-align: center;
         }
-
-        .thumbs img {
-            max-width: 50px;
-            max-height: 50px;
-            margin: 5px;
-            border: 1px solid #aaa;
-        }
     </style>
     <script>
         this.on("mount", () => {

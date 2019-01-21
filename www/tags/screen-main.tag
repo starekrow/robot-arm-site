@@ -1,9 +1,8 @@
 <screen-main>
     <screen-main-desktop></screen-main-desktop>
     <style>
-
         :scope {
-            x-color: #f00;
+            box-sizing: border-box;
         }
     
     </style>
